@@ -9,7 +9,7 @@ TELNET_PORT = 23
 TELNET_TIMEOUT = 6
 
 def send_command(remote_conn, cmd):
-    cmd = cmd.strip()
+    cmd = cmd.rstrip()
     remote_conn.write(cmd + "\n")
     time.sleep(1)
     return remote_conn.read_very_eager()
