@@ -62,7 +62,10 @@ def main():
         my_conn.login()
         my_conn.disable_paging()
         output = my_conn.send_command()
-        print output 
+
+        print "\n*****************"
+        print output
+        print "******************" 
 
     my_conn.close_conn()
 
