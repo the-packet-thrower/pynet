@@ -1,0 +1,8 @@
+---
+access_switch:
+    - { hostname: pynet-sw1, ip_addr: 1.1.1.1, default_gateway: 1.1.1.254, secret: "cisco", access_vlan: 111, snmp_community: "cisco"}
+    - { hostname: pynet-sw2, ip_addr: 2.2.2.2, default_gateway: 2.2.2.254, secret: "cisco", access_vlan: 222, snmp_community: "cisco"}
+    - { hostname: pynet-sw3, ip_addr: 3.3.3.3, default_gateway: 3.3.3.254, secret: "cisco", access_vlan: 333, snmp_community: "cisco"}
+    - { hostname: pynet-sw4, ip_addr: 4.4.4.4, default_gateway: 4.4.4.254, secret: "cisco", access_vlan: 444, snmp_community: "cisco"}
+    - { hostname: pynet-sw5, ip_addr: 5.5.5.5, default_gateway: 5.5.5.254, secret: "cisco", access_vlan: 555, snmp_community: "cisco"}
+    - { hostname: pynet-sw6, ip_addr: 6.6.6.6, default_gateway: 6.6.6.254, secret: "cisco", access_vlan: 666, snmp_community: "cisco"}
