@@ -1,0 +1,16 @@
+no service pad
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+no service password-encryption
+!
+hostname pynet-rtr5
+!
+boot-start-marker
+boot system flash c880data-universalk9-mz.154-2.T1.bin
+boot-end-marker
+
+ 
+
+
+interface vlan 11
+ip address 5.5.5.5

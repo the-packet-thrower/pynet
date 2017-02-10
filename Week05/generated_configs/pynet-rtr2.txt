@@ -1,0 +1,20 @@
+no service pad
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+no service password-encryption
+!
+hostname pynet-rtr2
+!
+boot-start-marker
+boot system flash c880data-universalk9-mz.154-2.T1.bin
+boot-end-marker
+
+ip dhcp pool POOL1
+  network 2.2.2.0 255.255.255.0
+  default-router 2.2.2.2
+  dns-server 8.8.8.8 8.8.4.4
+ 
+
+
+interface vlan 11
+ip address 2.2.2.2

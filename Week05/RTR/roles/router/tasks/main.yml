@@ -1,0 +1,6 @@
+---
+- name: Generate Config
+  template: src=router.j2
+            dest=~/git/pynet/Week05/generated_configs/{{ item.hostname }}.txt
+
+  with_items: "{{ the_routers }}"

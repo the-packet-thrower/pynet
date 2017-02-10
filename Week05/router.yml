@@ -1,0 +1,14 @@
+---
+- hosts: local
+  tasks:
+   - name: Generate Config
+     template: src=./router1.j2
+               dest=./generated_configs/{{ item.hostname }}.txt
+
+     with_items:
+        - {hostname: pynet-rtr1, ip_addr: 1.1.1.1}
+        - {hostname: pynet-rtr2, ip_addr: 2.1.1.1}
+        - {hostname: pynet-rtr3, ip_addr: 3.1.1.1}
+        - {hostname: pynet-rtr4, ip_addr: 4.1.1.1}
+        - {hostname: pynet-rtr5, ip_addr: 5.1.1.1}
+        - {hostname: pynet-rtr6, ip_addr: 6.1.1.1}

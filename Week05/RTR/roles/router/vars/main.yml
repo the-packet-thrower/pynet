@@ -1,0 +1,8 @@
+---
+the_routers:
+   - { hostname: pynet-rtr1, ip_addr: 1.1.1.1, DHCP: True, dhcp_network: 1.1.1.0 }
+   - { hostname: pynet-rtr2, ip_addr: 2.2.2.2, DHCP: True, dhcp_network: 2.2.2.0 }
+   - { hostname: pynet-rtr3, ip_addr: 3.3.3.3, DHCP: True, dhcp_network: 3.3.3.0 }
+   - { hostname: pynet-rtr4, ip_addr: 4.4.4.4, DHCP: False, dhcp_network: none }
+   - { hostname: pynet-rtr5, ip_addr: 5.5.5.5, DHCP: False, dhcp_network: none }
+   - { hostname: pynet-rtr6, ip_addr: 6.6.6.6, DHCP: False, dhcp_network: none }
