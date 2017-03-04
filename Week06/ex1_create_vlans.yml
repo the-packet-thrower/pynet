@@ -1,0 +1,16 @@
+---
+- name: Arista Exercise01
+  hosts: arista
+
+  tasks:
+    - name:
+      eos_vlan: name={{ item.vlan_name }} vlanid={{item.vlan_id }} 
+          username={{ eapi_username }}
+          password={{ eapi_password }}
+          host={{ eapi_hostname }}
+          port={{ eapi_port }}
+          transport=https
+      with_items:
+          - {vlan_name: DR1, vlan_id: 441}
+          - {vlan_name: DR2, vlan_id: 442}
+          - {vlan_name: DR3, vlan_id: 443}

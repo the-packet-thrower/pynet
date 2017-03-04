@@ -1,0 +1,67 @@
+---
+- name: Create Arista Vlans
+  hosts: arista
+
+  tasks:
+#   - name: Create BLUE VLAN
+#     eos_vlan: name=BLUE vlanid=100
+#         username={{eapi_username}}
+#         password={{eapi_password}}
+#         host={{eapi_hostname}}
+#         port={{eapi_port}}
+#         transport=https
+#
+#   - name: Create RED VLAN
+#     eos_vlan: name=RED vlanid=200
+#         username={{eapi_username}}
+#         password={{eapi_password}}
+#         host={{eapi_hostname}}
+#         port={{eapi_port}}
+#         transport=https                          
+#
+#   - name: Create GREEN VLAN
+#     eos_vlan: name=GREEN vlanid=300
+#         username={{eapi_username}}
+#         password={{eapi_password}}
+#         host={{eapi_hostname}}
+#         port={{eapi_port}}
+#         transport=https
+
+    - name: Setting Ethernet4 description
+      eos_interface: name=Ethernet4 description="***TESTING***"
+         username={{eapi_username}}
+         password={{eapi_password}}
+         host={{eapi_hostname}}
+         port={{eapi_port}}
+         transport=https           
+
+    - name: Set Ethernet2-4 to access mode, Vlan200
+      eos_switchport: name={{ item }} mode=access access_vlan=200
+         username={{eapi_username}}
+         password={{eapi_password}}
+         host={{eapi_hostname}}
+         port={{eapi_port}}
+         transport=https           
+        
+      with_items:
+          - Ethernet2
+          - Ethernet3
+          - Ethernet4
+      
+    - name: Configure Ethernet5 to Trunk
+      eos_switchport: name=Ethernet5 mode=trunk trunk_native_vlan=100 trunk_allowed_vlans=100,200
+         username={{eapi_username}}
+         password={{eapi_password}}
+         host={{eapi_hostname}}
+         port={{eapi_port}}
+         transport=https
+
+    - name: Testing command (not idempotent)
+      eos_command: commands="write memory"
+          username={{ eapi_username }}
+          password={{ eapi_password }}
+          host={{ eapi_hostname }}
+          port={{ eapi_port }}
+          transport=https
+      register: cmd_out
+    - debug: var=cmd_out

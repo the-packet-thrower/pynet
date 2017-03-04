@@ -1,0 +1,43 @@
+---
+- name: Create Arista Vlans
+  hosts: arista
+
+  tasks:
+    - name: Removing Ethernet4 description
+      eos_interface: name=Ethernet4 description=""
+         username={{eapi_username}}
+         password={{eapi_password}}
+         host={{eapi_hostname}}
+         port={{eapi_port}}
+         transport=https           
+
+    - name: Remove Vlans
+      eos_vlan: name={{ item.name }} vlanid={{ item.vlanid }} state=absent
+         username={{eapi_username}}
+         password={{eapi_password}}
+         host={{eapi_hostname}}
+         port={{eapi_port}}
+         transport=https           
+        
+      with_items:
+          - {name: BLUE, vlanid: 100}
+          - {name: RED, vlanid: 200}
+          - {name: GREEN, vlanid: 300}
+      
+    - name: Remove Ethernet5 to Trunk
+      eos_switchport: name=Ethernet5 mode=access access_vlan=1 trunk_native_vlan=1 trunk_allowed_vlans=1-4094
+         username={{eapi_username}}
+         password={{eapi_password}}
+         host={{eapi_hostname}}
+         port={{eapi_port}}
+         transport=https
+
+    - name: Testing command (not idempotent)
+      eos_command: commands="write memory"
+          username={{ eapi_username }}
+          password={{ eapi_password }}
+          host={{ eapi_hostname }}
+          port={{ eapi_port }}
+          transport=https
+      register: cmd_out
+    - debug: var=cmd_out
